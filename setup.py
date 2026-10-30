@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from codecs import open
 import os
 
 __author__ = "Alexander Urban"
@@ -35,9 +34,17 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
+        'Programming Language :: Python :: 3.14',
     ],
     keywords=['percolation', 'materials science', 'monte carlo'],
     packages=find_packages(exclude=['tests']),
+    python_requires='>=3.8',
+    include_package_data=True,
     install_requires=[
         'numpy>=1.20.1',
         'scipy>=1.5.0',
