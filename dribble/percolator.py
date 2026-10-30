@@ -33,7 +33,7 @@ from .sublattice import Bond
 __autor__ = "Alexander Urban"
 __date__ = "2013-02-15"
 
-EPS = 100.0*np.finfo(np.float).eps
+EPS = 100.0*np.finfo(float).eps
 
 
 class Percolator(object):
@@ -512,7 +512,7 @@ class Percolator(object):
           Tuple: (min_tortuosity, mean_tortuosity, std_tortuosity)
 
         The algorithm used is as follows:
-        0. Check if the cluster is percolating and return np.infty if not
+        0. Check if the cluster is percolating and return np.inf if not
         1. For each site in the cluster, determine the shortest path
            connecting the site with one of its periodic images
         2. Tortuosity is: tau = (path length)/(distance)
@@ -525,7 +525,7 @@ class Percolator(object):
 
         if not any(self.wrapping[cluster_id] > 0):
             # cluster is periodically wrapping
-            return (np.infty, np.infty, 0.0)
+            return (np.inf, np.inf, 0.0)
 
         # all sites of the selected cluster
         cluster_sites = self.get_sites_of_cluster(cluster_id)
@@ -599,7 +599,7 @@ class Percolator(object):
           Tuple: (min_tortuosity, mean_tortuosity, std_tortuosity)
 
         The algorithm used is as follows:
-        0. Check if the cluster is percolating and return np.infty if not
+        0. Check if the cluster is percolating and return np.inf if not
         1. For each site in the cluster, determine the shortest path
            connecting the site with one of its periodic images
         2. Tortuosity is: tau = (path length)/(distance)
@@ -612,7 +612,7 @@ class Percolator(object):
 
         if not any(self.wrapping[cluster_id] > 0):
             # cluster is periodically wrapping
-            return (np.infty, np.infty, 0.0)
+            return (np.inf, np.inf, 0.0)
 
         # all sites of the selected cluster
         cluster_sites = self.get_sites_of_cluster(cluster_id)
@@ -626,7 +626,7 @@ class Percolator(object):
 
         def get_shortest_path(site, path=[], pathlen=0.0,
                               vec=np.array([0.0, 0.0, 0.0]),
-                              tortuosity_opt=np.infty):
+                              tortuosity_opt=np.inf):
             """ Recursively search shortest closed path """
             path_opt = None
             pathlen_opt = None
@@ -640,7 +640,7 @@ class Percolator(object):
                     v_12_cart = np.dot(v_12, self._avec)
                     pathlen_nb = pathlen + np.linalg.norm(v_12_cart)
                     # best achievable tortuosity with current path
-                    tortuosity_nb = np.infty
+                    tortuosity_nb = np.inf
                     for i, T in enumerate(star):
                         D = T_len[i]
                         P = pathlen_nb + np.linalg.norm(T - vec_nb)
@@ -667,7 +667,7 @@ class Percolator(object):
                             tortuosity_opt = pathlen_opt/D
             return (path_opt, pathlen_opt, vec_opt, tortuosity_opt)
 
-        tortuosity = [np.infty for site in cluster_sites]
+        tortuosity = [np.inf for site in cluster_sites]
         for site in cluster_sites:
             if tortuosity[site] > 1.0:
                 (path, pathlen, vec, tort) = get_shortest_path(
@@ -1404,7 +1404,7 @@ class Percolator(object):
             return
 
         if site is None:
-            sel = np.random.random_integers(0, self.num_vacant_not_static-1)
+            sel = np.random.randint(self.num_vacant_not_static)
             site = self.vacant_not_static[sel]
         elif (site in self.vacant) and (site not in self._static_vacant):
             sel = self.vacant.index(site)

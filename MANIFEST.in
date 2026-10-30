@@ -1,3 +1,4 @@
 include *.rst LICENSE
+include dribble/VERSION
 recursive-include dribble *.py *.json
 recursive-exclude dribble tests/*.*

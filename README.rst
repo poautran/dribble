@@ -33,6 +33,11 @@ B. Ouyang†, N. Artrith†, Z. Lun†, Z. Jadidi, D. A. Kitchaev, H. Ji, A. Urb
 Installation
 ------------
 
+Dribble supports Python 3.8 through 3.14. Dependencies are NumPy, SciPy,
+and pymatgen; pip selects releases compatible with your Python version.
+The compatibility workflow upgrades dependencies and runs regression tests
+on each supported Python version, including a weekly scheduled run.
+
 To use ``pip`` to install *Dribble*,
 run the following command inside the ``dribble`` directory:
 
@@ -45,6 +50,10 @@ or to install in "editable" mode, use
 ::
 
   pip install -e .
+
+To run the regression tests from a source checkout::
+
+  python -m unittest discover -s dribble/tests -v
 
 
 Examples
